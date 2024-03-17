@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:introduction_screen/introduction_screen.dart';
 import 'package:pay_wallet/modules/home/widgets/balance_card_widget.dart';
 import 'package:pay_wallet/modules/home/widgets/main_action_buttons_widget.dart';
 import 'package:pay_wallet/modules/home/widgets/service_widget.dart';
-import 'package:page_view_dot_indicator/page_view_dot_indicator.dart';
 import 'package:pay_wallet/shared/widgets/dot_indicators.dart';
 
-import '../../core/constants/app_colors.dart';
 import '../../shared/models/enums.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -29,37 +26,15 @@ class _HomeScreenState extends State<HomeScreen> {
         },
         child: SingleChildScrollView(
           child: Column(
-            children: [
-              accounts(),
-              dotIndicators(),
-              accountActionButtons(),
-              services()
-            ],
+            children: [accounts(), accountActionButtons(), services()],
           ),
         ));
   }
 
   Widget accounts() {
-    return Container(
-      height: 210,
-      child: PageView(
-        scrollDirection: Axis.horizontal,
-        onPageChanged: _onPageViewChange,
-        children: const [
-          BalanceCardWidget(
-            balance: 1603.25,
-            currency: Currency.usd,
-          ),
-          BalanceCardWidget(
-            balance: 18730.25,
-            currency: Currency.lbp,
-          ),
-          BalanceCardWidget(
-            balance: 43.25,
-            currency: Currency.saving,
-          ),
-        ],
-      ),
+    return const BalanceCardWidget(
+      balance: 1603.25,
+      currency: Currency.usd,
     );
   }
 

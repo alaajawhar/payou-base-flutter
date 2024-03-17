@@ -29,7 +29,7 @@ class _accountActionButtonsState extends State<accountActionButtons> {
                 debugPrint('[Send Button] Pressed!');
                 AppRouter.showInModal(context, MultiOptionWidget(title: 'How do you want to send money?', options: sendMoneyOptions,));
               }),
-          ActionButton1(text: 'Deposit',
+          ActionButton1(text: 'Receive',
               svgPath: AppResources.depositMoney,
               onButtonPress: () {
                 debugPrint('[Deposit Button] Pressed!');

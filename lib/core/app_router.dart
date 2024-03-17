@@ -5,6 +5,7 @@ import 'package:pay_wallet/modules/onboarding/signup_screen.dart';
 import 'package:pay_wallet/modules/qr/my_qr_screen.dart';
 import 'package:pay_wallet/shared/widgets/app_home.dart';
 
+import '../modules/credit_card/card_settings_screen.dart';
 import '../modules/home/models/add_money_options.dart';
 import '../shared/widgets/multi_option_widget.dart';
 
@@ -15,14 +16,17 @@ class AppRouter {
   static String userValidationScreen = 'user-validation';
   static String myQr = 'my-qr';
   static String otpVerification = 'otpVerification';
+  static String cardSettings = 'cardSettings';
 
   static Map<String, WidgetBuilder> routes = {
     home: (context) => const AppHome(),
-    hotel: (context) => MultiOptionWidget(title: 'sd', options: addMoneyOptions),
+    hotel: (context) =>
+        MultiOptionWidget(title: 'sd', options: addMoneyOptions),
     userValidationScreen: (context) => const SingInScreen(),
     myQr: (context) => const MyQrScreen(),
     signUp: (context) => const SignUpScreen(),
     otpVerification: (context) => const OtpVerificationScreen(),
+    cardSettings: (context) => const CardSettingsScreen(),
   };
 
   static navigate(BuildContext context, String routerLink) {

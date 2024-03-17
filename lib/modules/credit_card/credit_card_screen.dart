@@ -109,6 +109,7 @@ class _CreditCardScreenState extends State<CreditCardScreen> {
             svgPath: AppResources.settings,
             onButtonPress: () {
               debugPrint('[Card Settings] Pressed!');
+              AppRouter.navigate(context, AppRouter.cardSettings);
             }),
       ],
     );
