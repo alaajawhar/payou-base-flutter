@@ -7,18 +7,16 @@ import '../../shared/widgets/app_button.dart';
 import '../../shared/widgets/logo_widget.dart';
 import '../../shared/widgets/text_fields.dart';
 
-class SignUpScreen extends StatefulWidget {
-  const SignUpScreen({super.key});
+class SetPasswordScreen extends StatefulWidget {
+  const SetPasswordScreen({super.key});
 
   @override
-  State<SignUpScreen> createState() => _SingUpScreenState();
+  State<SetPasswordScreen> createState() => _SingUpScreenState();
 }
 
-class _SingUpScreenState extends State<SignUpScreen> {
-  final emailTextEditingController = TextEditingController();
-  final firstNameTextEditingController = TextEditingController();
-  final lastNameTextEditingController = TextEditingController();
-  final dateOfBirthTextEditingController = TextEditingController();
+class _SingUpScreenState extends State<SetPasswordScreen> {
+  final passwordTextEditingController = TextEditingController();
+  final repeatPasswordTextEditingController = TextEditingController();
   final double _horizontalPadding = 25;
 
   @override
@@ -53,13 +51,9 @@ class _SingUpScreenState extends State<SignUpScreen> {
                         const SizedBox(height: 20),
                         welcomeText(),
                         const SizedBox(height: 20),
-                        email(emailTextEditingController),
+                        password(passwordTextEditingController),
                         const SizedBox(height: 10),
-                        firstName(firstNameTextEditingController),
-                        const SizedBox(height: 10),
-                        lastName(lastNameTextEditingController),
-                        const SizedBox(height: 10),
-                        dateOfBirth(dateOfBirthTextEditingController),
+                        repeatPassword(repeatPasswordTextEditingController),
                         const SizedBox(height: 10),
                       ],
                     ),
@@ -69,10 +63,10 @@ class _SingUpScreenState extends State<SignUpScreen> {
                         bottom: bottomPadding,
                       ),
                       child: AppButton(
-                        text: "Sign Up",
+                        text: "Set",
                         onTap: () {
-                          AppRouter.navigate(
-                              context, AppRouter.otpVerification);
+                          AppRouter.navigateWithClearStack(
+                              context, AppRouter.home);
                         },
                       ),
                     ),
@@ -100,33 +94,37 @@ class _SingUpScreenState extends State<SignUpScreen> {
     );
   }
 
-  Widget email(TextEditingController textEditingController) {
+  Widget password(TextEditingController textEditingController) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: _horizontalPadding),
-      child: CustomTextField.email(textEditingController),
+      child: CustomTextField.password(
+          textEditingController: textEditingController,
+          placeHolder: "Password"),
     );
   }
 
-  Widget firstName(TextEditingController textEditingController) {
+  Widget repeatPassword(TextEditingController textEditingController) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: _horizontalPadding),
-      child: CustomTextField.name(textEditingController, "First Name"),
+      child: CustomTextField.password(
+          textEditingController: textEditingController,
+          placeHolder: "Repeat Password"),
     );
   }
 
   Widget lastName(TextEditingController textEditingController) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 25.0),
+      padding: EdgeInsets.symmetric(horizontal: _horizontalPadding),
       child: CustomTextField.name(textEditingController, "Last Name"),
     );
   }
 
   Widget dateOfBirth(TextEditingController textEditingController) {
     return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 25.0),
+        padding: EdgeInsets.symmetric(horizontal: _horizontalPadding),
         child: CustomDatePicker.dateOfBirthTextField(
             context: context,
-            initialDate: DateTime.now(),
+            initialDate: DateTime(1996, 1, 1),
             minimumDate: DateTime(1900),
             maximumDate: DateTime.now(),
             textEditingController: textEditingController));

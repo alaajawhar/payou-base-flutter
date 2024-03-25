@@ -1,22 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:pay_wallet/core/constants/app_colors.dart';
 
 import '../../core/app_router.dart';
 import '../../shared/widgets/app_button.dart';
 import '../../shared/widgets/logo_widget.dart';
+import '../../shared/widgets/text_fields.dart';
 
-class OtpVerificationScreen extends StatefulWidget {
-  const OtpVerificationScreen({super.key});
+class SingInScreen extends StatefulWidget {
+  const SingInScreen({super.key});
 
   @override
-  State<OtpVerificationScreen> createState() => _OtpVerificationScreenState();
+  State<SingInScreen> createState() => _SingInScreenState();
 }
 
-class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
+class _SingInScreenState extends State<SingInScreen> {
+  final mobileNumberController = TextEditingController();
+  final double _horizontalPadding = 25;
+
   @override
   Widget build(BuildContext context) {
-    final mobileNumberController = TextEditingController();
     // Calculate the bottom padding based on the keyboard's visibility
     final double bottomPadding = MediaQuery.of(context).viewInsets.bottom;
 
@@ -43,9 +45,9 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                           fontSize: 50,
                         ),
                         const SizedBox(height: 20),
-                        otpHasSentToYouText(),
+                        welcomeText(),
                         const SizedBox(height: 20),
-                        otpTextField(mobileNumberController),
+                        mobileNumber(mobileNumberController),
                         const SizedBox(height: 10),
                       ],
                     ),
@@ -55,10 +57,9 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                         bottom: bottomPadding,
                       ),
                       child: AppButton(
-                        text: "Verify",
+                        text: "Sign In",
                         onTap: () {
-                          AppRouter.navigateWithClearStack(
-                              context, AppRouter.home);
+                          AppRouter.navigate(context, AppRouter.signUp);
                         },
                       ),
                     ),
@@ -72,41 +73,24 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
     );
   }
 
-  Widget otpHasSentToYouText() {
-    return Text(
-      'An OTP has just been sent to you!',
-      style: TextStyle(
-        color: Colors.grey[700],
-        fontSize: 16,
-      ),
-    );
+  Widget welcomeText() {
+    return Padding(
+        padding: EdgeInsets.symmetric(horizontal: _horizontalPadding),
+        child: Text(
+          'Welcome back you\'ve been missed!',
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            color: Colors.grey[700],
+            fontSize: 14,
+          ),
+        ));
   }
 
-  Widget otpTextField(TextEditingController mobileNumberController) {
-    return OtpTextField(
-      numberOfFields: 4,
-      autoFocus: true,
-      focusedBorderColor: AppColors.primaryColor,
-      styles: [
-        createStyle(AppColors.primaryColor),
-        createStyle(AppColors.primaryColor),
-        createStyle(AppColors.primaryColor),
-        createStyle(AppColors.primaryColor),
-      ],
-      showFieldAsBox: false,
-      borderWidth: 4.0,
-      onCodeChanged: (String code) {
-        //handle validation or checks here if necessary
-      },
-      onSubmit: (String verificationCode) {
-        // runs when every textfield is filled
-      },
+  Widget mobileNumber(TextEditingController mobileNumberController) {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: _horizontalPadding),
+      child: CustomTextField.mobileNumber(mobileNumberController),
     );
-  }
-
-  TextStyle? createStyle(Color color) {
-    ThemeData theme = Theme.of(context);
-    return theme.textTheme.headline3?.copyWith(color: color);
   }
 
   dismissKeyboard() {

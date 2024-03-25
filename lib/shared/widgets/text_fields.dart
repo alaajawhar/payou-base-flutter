@@ -29,4 +29,15 @@ class CustomTextField {
       decoration: CustomInputDecorations.placeHolderTextField(placeHolder),
     );
   }
+
+  static TextField password(
+      {required TextEditingController textEditingController,
+      String placeHolder = 'Password'}) {
+    return TextField(
+      controller: textEditingController,
+      keyboardType: TextInputType.visiblePassword,
+      obscureText: true,
+      decoration: CustomInputDecorations.placeHolderTextField(placeHolder),
+    );
+  }
 }

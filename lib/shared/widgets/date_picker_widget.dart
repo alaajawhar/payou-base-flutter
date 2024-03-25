@@ -14,10 +14,10 @@ class CustomDatePicker {
   }) {
     return GestureDetector(
         onTap: () => CustomDatePicker.showIOSDatePicker(
-          context: context,
-              initialDate: DateTime(1996, 1, 1),
-              minimumDate: DateTime(1900),
-              maximumDate: DateTime.now(),
+              context: context,
+              initialDate: initialDate,
+              minimumDate: minimumDate,
+              maximumDate: maximumDate,
               onDateChanged: (newDate) {
                 textEditingController.text =
                     CustomDateUtils.formatDateTime(newDate);

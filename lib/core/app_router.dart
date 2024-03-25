@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:pay_wallet/modules/onboarding/otp_verification_screen.dart';
-import 'package:pay_wallet/modules/onboarding/signin_screen.dart';
-import 'package:pay_wallet/modules/onboarding/signup_screen.dart';
 import 'package:pay_wallet/modules/qr/my_qr_screen.dart';
 import 'package:pay_wallet/shared/widgets/app_home.dart';
 
+import '../modules/authorization/otp_verification_screen.dart';
+import '../modules/authorization/set_password_screen.dart';
+import '../modules/authorization/signin_screen.dart';
+import '../modules/authorization/signup_screen.dart';
 import '../modules/credit_card/card_settings_screen.dart';
 import '../modules/home/models/add_money_options.dart';
 import '../shared/widgets/multi_option_widget.dart';
@@ -13,6 +14,7 @@ class AppRouter {
   static String home = 'home';
   static String signUp = 'signup';
   static String signIn = 'signin';
+  static String setPassword = 'setPassword';
   static String hotel = 'hotel';
   static String userValidationScreen = 'user-validation';
   static String myQr = 'my-qr';
@@ -29,6 +31,7 @@ class AppRouter {
     signIn: (context) => const SingInScreen(),
     otpVerification: (context) => const OtpVerificationScreen(),
     cardSettings: (context) => const CardSettingsScreen(),
+    setPassword: (context) => const SetPasswordScreen(),
   };
 
   static navigate(BuildContext context, String routerLink) {

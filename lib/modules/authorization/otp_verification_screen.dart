@@ -1,21 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:pay_wallet/core/constants/app_colors.dart';
 
 import '../../core/app_router.dart';
 import '../../shared/widgets/app_button.dart';
 import '../../shared/widgets/logo_widget.dart';
-import '../../shared/widgets/text_fields.dart';
 
-class SingInScreen extends StatefulWidget {
-  const SingInScreen({super.key});
+class OtpVerificationScreen extends StatefulWidget {
+  const OtpVerificationScreen({super.key});
 
   @override
-  State<SingInScreen> createState() => _SingInScreenState();
+  State<OtpVerificationScreen> createState() => _OtpVerificationScreenState();
 }
 
-class _SingInScreenState extends State<SingInScreen> {
-  final double _horizontalPadding = 25;
-
+class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
   @override
   Widget build(BuildContext context) {
     final mobileNumberController = TextEditingController();
@@ -45,9 +43,9 @@ class _SingInScreenState extends State<SingInScreen> {
                           fontSize: 50,
                         ),
                         const SizedBox(height: 20),
-                        welcomeText(),
+                        otpHasSentToYouText(),
                         const SizedBox(height: 20),
-                        mobileNumber(mobileNumberController),
+                        otpTextField(mobileNumberController),
                         const SizedBox(height: 10),
                       ],
                     ),
@@ -57,9 +55,10 @@ class _SingInScreenState extends State<SingInScreen> {
                         bottom: bottomPadding,
                       ),
                       child: AppButton(
-                        text: "Sign In",
+                        text: "Verify",
                         onTap: () {
-                          AppRouter.navigate(context, AppRouter.signUp);
+                          AppRouter.navigateWithClearStack(
+                              context, AppRouter.setPassword);
                         },
                       ),
                     ),
@@ -73,24 +72,41 @@ class _SingInScreenState extends State<SingInScreen> {
     );
   }
 
-  Widget welcomeText() {
-    return Padding(
-        padding: EdgeInsets.symmetric(horizontal: _horizontalPadding),
-        child: Text(
-          'Welcome back you\'ve been missed!',
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            color: Colors.grey[700],
-            fontSize: 14,
-          ),
-        ));
+  Widget otpHasSentToYouText() {
+    return Text(
+      'An OTP has just been sent to you!',
+      style: TextStyle(
+        color: Colors.grey[700],
+        fontSize: 16,
+      ),
+    );
   }
 
-  Widget mobileNumber(TextEditingController mobileNumberController) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 25.0),
-      child: CustomTextField.mobileNumber(mobileNumberController),
+  Widget otpTextField(TextEditingController mobileNumberController) {
+    return OtpTextField(
+      numberOfFields: 4,
+      autoFocus: true,
+      focusedBorderColor: AppColors.primaryColor,
+      styles: [
+        createStyle(AppColors.primaryColor),
+        createStyle(AppColors.primaryColor),
+        createStyle(AppColors.primaryColor),
+        createStyle(AppColors.primaryColor),
+      ],
+      showFieldAsBox: false,
+      borderWidth: 4.0,
+      onCodeChanged: (String code) {
+        //handle validation or checks here if necessary
+      },
+      onSubmit: (String verificationCode) {
+        // runs when every textfield is filled
+      },
     );
+  }
+
+  TextStyle? createStyle(Color color) {
+    ThemeData theme = Theme.of(context);
+    return theme.textTheme.headline3?.copyWith(color: color);
   }
 
   dismissKeyboard() {
