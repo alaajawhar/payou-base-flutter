@@ -58,7 +58,7 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                         text: "Verify",
                         onTap: () {
                           AppRouter.navigateWithClearStack(
-                              context, AppRouter.setPassword);
+                              context, AppRouter.signUp);
                         },
                       ),
                     ),

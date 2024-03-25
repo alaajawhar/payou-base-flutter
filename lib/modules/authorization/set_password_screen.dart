@@ -49,7 +49,7 @@ class _SingUpScreenState extends State<SetPasswordScreen> {
                           fontSize: 50,
                         ),
                         const SizedBox(height: 20),
-                        welcomeText(),
+                        setStrongAndMemorablePassword(),
                         const SizedBox(height: 20),
                         password(passwordTextEditingController),
                         const SizedBox(height: 10),
@@ -80,11 +80,11 @@ class _SingUpScreenState extends State<SetPasswordScreen> {
     );
   }
 
-  Widget welcomeText() {
+  Widget setStrongAndMemorablePassword() {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: _horizontalPadding),
       child: Text(
-        'Creating an account has never been easier!',
+        'Set Strong and memorable password!',
         textAlign: TextAlign.center,
         style: TextStyle(
           color: Colors.grey[700],

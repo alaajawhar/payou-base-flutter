@@ -59,7 +59,8 @@ class _SingInScreenState extends State<SingInScreen> {
                       child: AppButton(
                         text: "Sign In",
                         onTap: () {
-                          AppRouter.navigate(context, AppRouter.signUp);
+                          AppRouter.navigate(
+                              context, AppRouter.otpVerification);
                         },
                       ),
                     ),

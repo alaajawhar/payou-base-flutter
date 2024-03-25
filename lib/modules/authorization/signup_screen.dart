@@ -71,8 +71,8 @@ class _SingUpScreenState extends State<SignUpScreen> {
                       child: AppButton(
                         text: "Sign Up",
                         onTap: () {
-                          AppRouter.navigate(
-                              context, AppRouter.otpVerification);
+                          AppRouter.navigateWithClearStack(
+                              context, AppRouter.setPassword);
                         },
                       ),
                     ),

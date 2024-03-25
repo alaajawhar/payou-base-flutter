@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/constants/app_resources.dart';
-import '../../../core/app_router.dart';
 import '../../../shared/widgets/action_button_2_widget.dart';
 import '../models/available_services.dart';
 
@@ -51,8 +49,7 @@ class _servicesState extends State<services> {
                         logo: servicesData[j].logo,
                         backgroundColor: servicesData[j].backgroundColor,
                         onItemTapped: () => {
-                          AppRouter.navigate(context, AppRouter.hotel)
-                        },
+                          debugPrint("do nothing")},
                       ),
                     for (int k = 0; k < 4 - (servicesData.length - i); k++)
                       emptySizeBoxWithSameWidthOfActionButton2()
