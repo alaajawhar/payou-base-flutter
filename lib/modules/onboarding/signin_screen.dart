@@ -1,22 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:pay_wallet/core/constants/app_colors.dart';
-import 'package:pay_wallet/shared/widgets/date_picker_widget.dart';
 
 import '../../core/app_router.dart';
 import '../../shared/widgets/app_button.dart';
 import '../../shared/widgets/logo_widget.dart';
 import '../../shared/widgets/text_fields.dart';
 
-class SignUpScreen extends StatefulWidget {
-  const SignUpScreen({super.key});
+class SingInScreen extends StatefulWidget {
+  const SingInScreen({super.key});
 
   @override
-  State<SignUpScreen> createState() => _SingUpScreenState();
+  State<SingInScreen> createState() => _SingInScreenState();
 }
 
-class _SingUpScreenState extends State<SignUpScreen> {
+class _SingInScreenState extends State<SingInScreen> {
   final double _horizontalPadding = 25;
-  DateTime? selectedDateOfBirth = DateTime.now();
 
   @override
   Widget build(BuildContext context) {
@@ -28,9 +26,7 @@ class _SingUpScreenState extends State<SignUpScreen> {
       onTap: dismissKeyboard,
       child: Scaffold(
         backgroundColor: AppColors.whiteColor,
-        resizeToAvoidBottomInset: true,
         body: SingleChildScrollView(
-          physics: BouncingScrollPhysics(),
           child: ConstrainedBox(
             constraints: BoxConstraints(
               minHeight: MediaQuery.of(context).size.height,
@@ -51,13 +47,7 @@ class _SingUpScreenState extends State<SignUpScreen> {
                         const SizedBox(height: 20),
                         welcomeText(),
                         const SizedBox(height: 20),
-                        email(mobileNumberController),
-                        const SizedBox(height: 10),
-                        firstName(mobileNumberController),
-                        const SizedBox(height: 10),
-                        lastName(mobileNumberController),
-                        const SizedBox(height: 10),
-                        dateOfBirth(mobileNumberController),
+                        mobileNumber(mobileNumberController),
                         const SizedBox(height: 10),
                       ],
                     ),
@@ -67,10 +57,9 @@ class _SingUpScreenState extends State<SignUpScreen> {
                         bottom: bottomPadding,
                       ),
                       child: AppButton(
-                        text: "Sign Up",
+                        text: "Sign In",
                         onTap: () {
-                          AppRouter.navigateWithClearStack(
-                              context, AppRouter.home);
+                          AppRouter.navigate(context, AppRouter.signUp);
                         },
                       ),
                     ),
@@ -86,52 +75,27 @@ class _SingUpScreenState extends State<SignUpScreen> {
 
   Widget welcomeText() {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: _horizontalPadding),
-      child: Text(
-        'Creating an account has never been easier!',
-        textAlign: TextAlign.center,
-        style: TextStyle(
-          color: Colors.grey[700],
-          fontSize: 14,
-        ),
-      ),
-    );
+        padding: EdgeInsets.symmetric(horizontal: _horizontalPadding),
+        child: Text(
+          'Welcome back you\'ve been missed!',
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            color: Colors.grey[700],
+            fontSize: 14,
+          ),
+        ));
   }
 
-  Widget email(TextEditingController mobileNumberController) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: _horizontalPadding),
-      child: CustomTextField.email(mobileNumberController),
-    );
-  }
-
-  Widget firstName(TextEditingController firstNameController) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: _horizontalPadding),
-      child: CustomTextField.name(firstNameController, "First Name"),
-    );
-  }
-
-  Widget lastName(TextEditingController firstNameController) {
+  Widget mobileNumber(TextEditingController mobileNumberController) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 25.0),
-      child: CustomTextField.name(firstNameController, "Last Name"),
+      child: CustomTextField.mobileNumber(mobileNumberController),
     );
-  }
-
-  Widget dateOfBirth(TextEditingController firstNameController) {
-    return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 25.0),
-        child: CustomDatePicker.dateOfBirthTextField(
-            context: context,
-            initialDate: DateTime.now(),
-            minimumDate: DateTime(1900),
-            maximumDate: DateTime.now(),
-            onDateChanged: (newDate) {}));
   }
 
   dismissKeyboard() {
     FocusScopeNode currentFocus = FocusScope.of(context);
+
     if (!currentFocus.hasPrimaryFocus) {
       currentFocus.unfocus();
     }

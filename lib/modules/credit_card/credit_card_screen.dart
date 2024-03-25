@@ -7,14 +7,12 @@ import 'package:pay_wallet/core/constants/app_colors.dart';
 import 'package:pay_wallet/modules/credit_card/data/cards_data_demo.dart';
 import 'package:pay_wallet/modules/credit_card/models/cardModel.dart';
 import 'package:pay_wallet/modules/credit_card/widgets/credit_card_details.dart';
-import 'package:pay_wallet/shared/services/formatingUtils.dart';
+import 'package:pay_wallet/shared/utils/formatingUtils.dart';
 
 import '../../core/app_router.dart';
 import '../../core/constants/app_resources.dart';
 import '../../shared/widgets/action_button_1_widget.dart';
 import '../../shared/widgets/dot_indicators.dart';
-import '../../shared/widgets/multi_option_widget.dart';
-import '../profile/models/profile_menu_options.dart';
 import 'data/transactions_data_demo.dart';
 
 class CreditCardScreen extends StatefulWidget {

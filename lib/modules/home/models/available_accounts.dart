@@ -1,7 +1,7 @@
 import '../../../shared/models/enums.dart';
 import '../widgets/balance_card_widget.dart';
 
-final List<BalanceCardWidget> addMoneyOptions = [
+final List<BalanceCardWidget> availableAccounts = [
   BalanceCardWidget(
     balance: 1873000.25,
     currency: Currency.lbp,

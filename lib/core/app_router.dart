@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pay_wallet/modules/onboarding/otp_verification_screen.dart';
-import 'package:pay_wallet/modules/onboarding/sign_in.dart';
+import 'package:pay_wallet/modules/onboarding/signin_screen.dart';
 import 'package:pay_wallet/modules/onboarding/signup_screen.dart';
 import 'package:pay_wallet/modules/qr/my_qr_screen.dart';
 import 'package:pay_wallet/shared/widgets/app_home.dart';
@@ -12,6 +12,7 @@ import '../shared/widgets/multi_option_widget.dart';
 class AppRouter {
   static String home = 'home';
   static String signUp = 'signup';
+  static String signIn = 'signin';
   static String hotel = 'hotel';
   static String userValidationScreen = 'user-validation';
   static String myQr = 'my-qr';
@@ -25,6 +26,7 @@ class AppRouter {
     userValidationScreen: (context) => const SingInScreen(),
     myQr: (context) => const MyQrScreen(),
     signUp: (context) => const SignUpScreen(),
+    signIn: (context) => const SingInScreen(),
     otpVerification: (context) => const OtpVerificationScreen(),
     cardSettings: (context) => const CardSettingsScreen(),
   };

@@ -4,7 +4,6 @@ import 'package:pay_wallet/core/constants/app_colors.dart';
 
 import '../../core/app_router.dart';
 import '../../shared/widgets/app_button.dart';
-import '../../shared/widgets/app_text_field.dart';
 import '../../shared/widgets/logo_widget.dart';
 
 class OtpVerificationScreen extends StatefulWidget {

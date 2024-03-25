@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../../shared/services/formatingUtils.dart';
+import '../../../shared/utils/formatingUtils.dart';
 
 class ProfileCard extends StatefulWidget {
   const ProfileCard({super.key});

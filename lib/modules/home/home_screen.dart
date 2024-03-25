@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pay_wallet/modules/home/widgets/balance_card_widget.dart';
 import 'package:pay_wallet/modules/home/widgets/main_action_buttons_widget.dart';
 import 'package:pay_wallet/modules/home/widgets/service_widget.dart';
+import 'package:pay_wallet/shared/backend/auth_service.dart';
 import 'package:pay_wallet/shared/widgets/dot_indicators.dart';
 
 import '../../shared/models/enums.dart';
@@ -22,6 +23,9 @@ class _HomeScreenState extends State<HomeScreen> {
 
     return RefreshIndicator(
         onRefresh: () async {
+          TokenResponse resp =
+              await AuthService.instance.refreshToken(RefreshTokenRequest());
+          debugPrint("response: " + '${resp.toJson()}');
           await Future.delayed(const Duration(seconds: 1));
         },
         child: SingleChildScrollView(

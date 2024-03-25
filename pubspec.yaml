@@ -39,6 +39,9 @@ dependencies:
   page_view_dot_indicator: ^2.3.0
   awesome_card: ^1.1.7
   flutter_otp_text_field: ^1.1.1
+  dio: ^5.4.1
+  logger: ^2.1.0
+  get: ^4.6.6
 
 dev_dependencies:
   flutter_test:

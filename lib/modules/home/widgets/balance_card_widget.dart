@@ -1,12 +1,10 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:pay_wallet/core/app_router.dart';
 import 'package:pay_wallet/shared/widgets/multi_option_widget.dart';
 
 import '../../../shared/models/enums.dart';
-import '../../../shared/services/formatingUtils.dart';
+import '../../../shared/utils/formatingUtils.dart';
 import '../models/add_money_options.dart';
 
 class BalanceCardWidget extends StatefulWidget {
