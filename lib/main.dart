@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get_navigation/src/root/get_material_app.dart';
 
 import 'core/app_router.dart';
 import 'core/constants/app_colors.dart';
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark);
-    return MaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: AppConfig.isDebugApp,
       // TODO: unify the below in a single file (similar to: https://gist.github.com/sumonb/cf54c15f779558fb7a6ad0b51e02ea9f)
       theme: payouThemeData(),

@@ -15,12 +15,14 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SingUpScreenState extends State<SignUpScreen> {
+  final emailTextEditingController = TextEditingController();
+  final firstNameTextEditingController = TextEditingController();
+  final lastNameTextEditingController = TextEditingController();
+  final dateOfBirthTextEditingController = TextEditingController();
   final double _horizontalPadding = 25;
-  DateTime? selectedDateOfBirth = DateTime.now();
 
   @override
   Widget build(BuildContext context) {
-    final mobileNumberController = TextEditingController();
     // Calculate the bottom padding based on the keyboard's visibility
     final double bottomPadding = MediaQuery.of(context).viewInsets.bottom;
 
@@ -51,13 +53,13 @@ class _SingUpScreenState extends State<SignUpScreen> {
                         const SizedBox(height: 20),
                         welcomeText(),
                         const SizedBox(height: 20),
-                        email(mobileNumberController),
+                        email(emailTextEditingController),
                         const SizedBox(height: 10),
-                        firstName(mobileNumberController),
+                        firstName(firstNameTextEditingController),
                         const SizedBox(height: 10),
-                        lastName(mobileNumberController),
+                        lastName(lastNameTextEditingController),
                         const SizedBox(height: 10),
-                        dateOfBirth(mobileNumberController),
+                        dateOfBirth(dateOfBirthTextEditingController),
                         const SizedBox(height: 10),
                       ],
                     ),
@@ -69,8 +71,8 @@ class _SingUpScreenState extends State<SignUpScreen> {
                       child: AppButton(
                         text: "Sign Up",
                         onTap: () {
-                          AppRouter.navigateWithClearStack(
-                              context, AppRouter.home);
+                          AppRouter.navigate(
+                              context, AppRouter.otpVerification);
                         },
                       ),
                     ),
@@ -98,28 +100,28 @@ class _SingUpScreenState extends State<SignUpScreen> {
     );
   }
 
-  Widget email(TextEditingController mobileNumberController) {
+  Widget email(TextEditingController textEditingController) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: _horizontalPadding),
-      child: CustomTextField.email(mobileNumberController),
+      child: CustomTextField.email(textEditingController),
     );
   }
 
-  Widget firstName(TextEditingController firstNameController) {
+  Widget firstName(TextEditingController textEditingController) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: _horizontalPadding),
-      child: CustomTextField.name(firstNameController, "First Name"),
+      child: CustomTextField.name(textEditingController, "First Name"),
     );
   }
 
-  Widget lastName(TextEditingController firstNameController) {
+  Widget lastName(TextEditingController textEditingController) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 25.0),
-      child: CustomTextField.name(firstNameController, "Last Name"),
+      child: CustomTextField.name(textEditingController, "Last Name"),
     );
   }
 
-  Widget dateOfBirth(TextEditingController firstNameController) {
+  Widget dateOfBirth(TextEditingController textEditingController) {
     return Padding(
         padding: const EdgeInsets.symmetric(horizontal: 25.0),
         child: CustomDatePicker.dateOfBirthTextField(
@@ -127,7 +129,7 @@ class _SingUpScreenState extends State<SignUpScreen> {
             initialDate: DateTime.now(),
             minimumDate: DateTime(1900),
             maximumDate: DateTime.now(),
-            onDateChanged: (newDate) {}));
+            textEditingController: textEditingController));
   }
 
   dismissKeyboard() {

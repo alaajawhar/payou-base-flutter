@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:pay_wallet/shared/utils/dateUtils.dart';
 
 import '../decorations/text_field_decorations.dart';
 
@@ -9,19 +10,23 @@ class CustomDatePicker {
     required DateTime initialDate,
     required DateTime minimumDate,
     required DateTime maximumDate,
-    required Function(DateTime) onDateChanged,
+    required TextEditingController textEditingController,
   }) {
     return GestureDetector(
         onTap: () => CustomDatePicker.showIOSDatePicker(
-              context: context,
+          context: context,
               initialDate: DateTime(1996, 1, 1),
               minimumDate: DateTime(1900),
               maximumDate: DateTime.now(),
-              onDateChanged: onDateChanged,
+              onDateChanged: (newDate) {
+                textEditingController.text =
+                    CustomDateUtils.formatDateTime(newDate);
+              },
             ),
         child: AbsorbPointer(
           child: TextField(
             keyboardType: TextInputType.datetime,
+            controller: textEditingController,
             decoration:
                 CustomInputDecorations.placeHolderTextField("Date Of Birth"),
           ),
