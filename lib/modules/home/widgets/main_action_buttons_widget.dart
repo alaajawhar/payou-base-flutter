@@ -3,7 +3,7 @@ import 'package:pay_wallet/modules/home/models/deposit_money_options.dart';
 import 'package:pay_wallet/modules/home/models/send_money_options.dart';
 
 import '../../../core/constants/app_resources.dart';
-import '../../../core/app_router.dart';
+import '../../../shared/decorations/custom_showModal.dart';
 import '../../../shared/widgets/action_button_1_widget.dart';
 import '../../../shared/widgets/multi_option_widget.dart';
 
@@ -27,13 +27,19 @@ class _accountActionButtonsState extends State<accountActionButtons> {
               svgPath: AppResources.sendMoney,
               onButtonPress: () {
                 debugPrint('[Send Button] Pressed!');
-                AppRouter.showInModal(context, MultiOptionWidget(title: 'How do you want to send money?', options: sendMoneyOptions,));
+                CustomShowModal.showInModal(MultiOptionWidget(
+                  title: 'How do you want to send money?',
+                  options: sendMoneyOptions,
+                ));
               }),
           ActionButton1(text: 'Receive',
               svgPath: AppResources.depositMoney,
               onButtonPress: () {
                 debugPrint('[Deposit Button] Pressed!');
-                AppRouter.showInModal(context, MultiOptionWidget(title: 'How do you want to deposit money?', options: depositMoneyOptions,));
+                CustomShowModal.showInModal(MultiOptionWidget(
+                  title: 'How do you want to deposit money?',
+                  options: depositMoneyOptions,
+                ));
               }),
           ActionButton1(text: 'History',
               svgPath: AppResources.transactionHistory,

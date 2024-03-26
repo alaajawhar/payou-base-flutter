@@ -14,8 +14,19 @@ class AppResources {
   static const String insurance = 'assets/test/shield-fill-check.svg';
   static const String more = 'assets/test/three-dots.svg';
 
-
   // TRANSACTION
   static const String cart = 'assets/icons/cart.svg';
 
+  static const String applePay = 'assets/icons/apple.svg';
+  static const String creditCard = 'assets/icons/credit_card.svg';
+
+  static const String walletToWallet = 'assets/icons/wallet.svg';
+  static const String bankTransfer = 'assets/icons/bank.svg';
+  static const String paypalTransfer = 'assets/icons/paypal.svg';
+
+  static const String changeLanguageIcon = 'assets/icons/language.svg';
+  static const String biometricIcon = 'assets/icons/biometric.svg';
+  static const String changeMobileNumberIcon =
+      'assets/icons/change-mobile-number.svg';
+  static const String logoutIcon = 'assets/icons/logout.svg';
 }

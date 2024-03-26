@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: AppConfig.isDebugApp,
       // TODO: unify the below in a single file (similar to: https://gist.github.com/sumonb/cf54c15f779558fb7a6ad0b51e02ea9f)
       theme: payouThemeData(),
-      routes: AppRouter.routes,
+      getPages: AppRouter.getPages,
       home: const IntroductionView(),
     );
   }

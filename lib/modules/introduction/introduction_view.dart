@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:pay_wallet/core/constants/app_colors.dart';
 
@@ -29,7 +30,7 @@ class _IntroductionViewState extends State<IntroductionView> {
       back: const Icon(Icons.arrow_back_ios_sharp),
       done: _done(),
       onDone: () {
-        AppRouter.navigateWithClearStack(context, AppRouter.userValidationScreen);
+        Get.offAllNamed(AppRouter.signIn, arguments: 'Your data here');
       },
       dotsDecorator: _dotsDecorator(),
     );

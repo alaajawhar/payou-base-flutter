@@ -3,6 +3,7 @@ import 'package:awesome_card/extra/card_type.dart';
 import 'package:awesome_card/style/card_background.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:pay_wallet/core/constants/app_colors.dart';
 import 'package:pay_wallet/modules/credit_card/data/cards_data_demo.dart';
 import 'package:pay_wallet/modules/credit_card/models/cardModel.dart';
@@ -11,6 +12,7 @@ import 'package:pay_wallet/shared/utils/formatingUtils.dart';
 
 import '../../core/app_router.dart';
 import '../../core/constants/app_resources.dart';
+import '../../shared/decorations/custom_showModal.dart';
 import '../../shared/widgets/action_button_1_widget.dart';
 import '../../shared/widgets/dot_indicators.dart';
 import 'data/transactions_data_demo.dart';
@@ -94,20 +96,18 @@ class _CreditCardScreenState extends State<CreditCardScreen> {
             svgPath: AppResources.cardDetails,
             onButtonPress: () {
               debugPrint('[Card Details] Pressed!');
-              AppRouter.showInModal(
-                  context,
-                  CardDetailsScreen(
-                      cardHolderName: 'Alaa Jawhar',
-                      cardNumber: availableCards[selectedCard].cardNumber,
-                      expiryDate: '01/26',
-                      cvv: '400'));
+              CustomShowModal.showInModal(CardDetailsScreen(
+                  cardHolderName: 'Alaa Jawhar',
+                  cardNumber: availableCards[selectedCard].cardNumber,
+                  expiryDate: '01/26',
+                  cvv: '400'));
             }),
         ActionButton1(
             text: 'Card Settings',
             svgPath: AppResources.settings,
             onButtonPress: () {
               debugPrint('[Card Settings] Pressed!');
-              AppRouter.navigate(context, AppRouter.cardSettings);
+              Get.toNamed(AppRouter.cardSettings);
             }),
       ],
     );
@@ -145,7 +145,7 @@ class _CreditCardScreenState extends State<CreditCardScreen> {
                 width: 20,
               ),
               onPressed: () {
-                AppRouter.showInModal(context, Text("worked"));
+                CustomShowModal.showInModal(Text("worked"));
               }),
         ],
       ),

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:pay_wallet/core/app_router.dart';
 import 'package:pay_wallet/shared/widgets/multi_option_widget.dart';
 
+import '../../../shared/decorations/custom_showModal.dart';
 import '../../../shared/models/enums.dart';
 import '../../../shared/utils/formatingUtils.dart';
 import '../models/add_money_options.dart';
@@ -92,12 +94,10 @@ class _BalanceCardWidgetState extends State<BalanceCardWidget> {
       label: const Text('Add Money'),
       onPressed: () {
         debugPrint('[balanceCard.addMoney] has been pressed');
-        AppRouter.showInModal(
-            context,
-            MultiOptionWidget(
-              title: 'How do you want to add money?',
-              options: addMoneyOptions,
-            ));
+        CustomShowModal.showInModal(MultiOptionWidget(
+          title: 'How do you want to add money?',
+          options: addMoneyOptions,
+        ));
       },
       style: ElevatedButton.styleFrom(
         splashFactory: NoSplash.splashFactory,
@@ -113,7 +113,7 @@ class _BalanceCardWidgetState extends State<BalanceCardWidget> {
   Widget qr() {
     return InkWell(
       onTap: () {
-        AppRouter.navigate(context, AppRouter.myQr);
+        Get.toNamed(AppRouter.myQr);
       },
       child: SvgPicture.asset(
         'assets/test/qr.svg',

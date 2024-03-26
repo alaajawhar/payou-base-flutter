@@ -7,6 +7,7 @@ import '../utils/dateUtils.dart';
 class AuthService {
   static final AuthService instance = AuthService();
 
+  final String _userLookUp = '/public/auth/v1/lookup';
   final String _signInEndpoint = '/public/auth/v1/signin';
   final String _signUpEndpoint = '/public/auth/v1/signup';
   final String _signOutEndpoint = '/secure/auth/v1/signout';
@@ -21,6 +22,11 @@ class AuthService {
     _dio.options.responseType = ResponseType.json; // 5 seconds
     _dio.options.connectTimeout = const Duration(seconds: 5000); // 5 seconds
     _dio.options.receiveTimeout = const Duration(seconds: 3000); // 3 seconds
+  }
+
+  Future<UserLookUpResponse> userLookUp(UserLookUpRequest request) async {
+    Response response = await _dio.post(_userLookUp, data: request.toJson());
+    return UserLookUpResponse.fromMap(response.data);
   }
 
   Future<TokenResponse> signin(SignInRequest request) async {
@@ -254,5 +260,49 @@ class GetUserDetailsResponse {
         "lastName": lastName,
         "email": email,
         "dateOfBirth": dateOfBirth,
+      };
+}
+
+class UserLookUpRequest {
+  String? username;
+
+  UserLookUpRequest({
+    this.username,
+  });
+
+  factory UserLookUpRequest.fromJson(String str) =>
+      UserLookUpRequest.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory UserLookUpRequest.fromMap(Map<String, dynamic> json) =>
+      UserLookUpRequest(
+        username: json["username"],
+      );
+
+  Map<String, dynamic> toMap() => {
+        "username": username,
+      };
+}
+
+class UserLookUpResponse {
+  bool isActive;
+
+  UserLookUpResponse({
+    required this.isActive,
+  });
+
+  factory UserLookUpResponse.fromJson(String str) =>
+      UserLookUpResponse.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory UserLookUpResponse.fromMap(Map<String, dynamic> json) =>
+      UserLookUpResponse(
+        isActive: json["isActive"],
+      );
+
+  Map<String, dynamic> toMap() => {
+        "isActive": isActive,
       };
 }

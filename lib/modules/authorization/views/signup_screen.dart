@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:pay_wallet/core/constants/app_colors.dart';
 import 'package:pay_wallet/shared/widgets/date_picker_widget.dart';
 
-import '../../core/app_router.dart';
-import '../../shared/widgets/app_button.dart';
-import '../../shared/widgets/logo_widget.dart';
-import '../../shared/widgets/text_fields.dart';
+import '../../../core/app_router.dart';
+import '../../../shared/widgets/app_button.dart';
+import '../../../shared/widgets/logo_widget.dart';
+import '../../../shared/widgets/text_fields.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -71,8 +72,8 @@ class _SingUpScreenState extends State<SignUpScreen> {
                       child: AppButton(
                         text: "Sign Up",
                         onTap: () {
-                          AppRouter.navigateWithClearStack(
-                              context, AppRouter.setPassword);
+                          Get.offAllNamed(AppRouter.setPassword,
+                              arguments: 'Your data here');
                         },
                       ),
                     ),
