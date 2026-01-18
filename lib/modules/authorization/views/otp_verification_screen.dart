@@ -107,7 +107,7 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
 
   TextStyle? createStyle(Color color) {
     ThemeData theme = Theme.of(context);
-    return theme.textTheme.headline3?.copyWith(color: color);
+    return theme.textTheme.displayLarge?.copyWith(color: color);
   }
 
   dismissKeyboard() {
